@@ -191,6 +191,7 @@ src/index.html
 
 <pre>
 <code>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -202,6 +203,7 @@ src/index.html
     <div id="root"></div>
   </body>
 </html>
+
 </code>
 </pre>
 
