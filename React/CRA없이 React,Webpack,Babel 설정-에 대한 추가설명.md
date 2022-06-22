@@ -20,3 +20,14 @@ ES6의 기본 값: dom, dom.iterable, es6, scripthost
 오픈소스 자바스크립트 라이브러리 중에는 웹 브라우저에서 동작한다는 가정으로 만들어 진 것들이 있다(위 소스에선 chance 라이브러리)
 
 이들은 CommonJS 방식으로 동작하는 TS 코드에 혼란을 줄 수 있으므로 이를 정상적으로 동작하게 하기 위해 true로 설정
+
+"isolatedModules": true, : isolatedModules
+
+각 파일을 분리된 모듈로 트랜스파일(트랜스파일(transpile)이란 어떤 특정 언어로 작성된 소스 코드를 다른 소스 코드로 변환하는 것을 말합니다)
+"jsx": "preserve",
+TypeScript는 다음 세 가지의 JSX 모드를 제공합니다: preserve, react, react-native. 이 모드는 출력 단계에만 영향을 미치며 타입 검사에는 영향을 미치지 않습니다. preserve 모드는 JSX를 출력 일부로 유지하여 이를 다른 변환 단계(예: Babel)에서 추가로 사용합니다. 또한 출력 파일 확장자는 .jsx입니다. react 모드는 React.createElement를 출력하고 사용하기 전 JSX 변환을 거칠 필요가 없으며 출력 파일 확장자는 .js입니다. react-native 모드는 모든 JSX를 유지한다는 점에서 preserve 모드와 유사하나, 출력 파일 확장자가 .js라는 차이가 있습니다.
+
+"allowSyntheticDefaultImports": true, allowSyntheticDefaultImports
+
+default export를 쓰지 않은 모듈도 default import가 가능하게 할건지 여부
+
