@@ -31,3 +31,39 @@ TypeScript는 다음 세 가지의 JSX 모드를 제공합니다: preserve, reac
 
 default export를 쓰지 않은 모듈도 default import가 가능하게 할건지 여부
 
+ "outDir": "./dist", : outDir : 컴파일 후 생성되는 js파일이 생성될 폴더명
+ 
+ "moduleResolution": "node" : moduleResolution 은 module을 import하거나 export할 때, 어떤 방식으로 처리할 것인가에 대한 설정입니다.(이 해석 전략은 런타임에 Node.js의 모듈 해석 메커니즘을 모방하려고 시도합니다.)
+ 
+ "exclude": ["node_modules"], :  exclude: 컴파일하지 않을 폴더나 파일을 제외
+"include": ["**/*.ts", "**/*.tsx"] : include: 컴파일할 폴더나 파일을 별도 지정
+
+(2) 바벨(Babel) 설정
+
+npm i -D babel-loader : babel-loader: 웹팩과 바벨을 연동시키도록 해준다.
+아래의 것들은 플러그인이지만 babel-loader과 같이 쓰이기 때문에 간략하게 소개하면 아래와 같다.
+@babel/cli : 터미널에서 바벨 명령어를 사용할 수 있게 도와준다.
+@babel/core : 바벨의 핵심 기능을 포함한다.
+@babel/preset-env : es6의 문법을 es5의 문법으로 사용할 수 있게끔 es6의 문법을 트랜스파일링을 해주는 플러그인이다.
+-D : -D 와 같은 접미어를 “플래그” 라고 부르는데, 주로 사용되는 플래그는 다음과 같습니다.
+플래그	효과
+-P	패키지를 설치하고 프로젝트의 dependencies 목록에 추가한다.
+—save-prod	패키지를 설치하고 프로젝트의 dependencies 목록에 추가한다.
+-D	패키지를 설치하고 프로젝트의 devDependencies 목록에 추가한다.
+—save-dev	패키지를 설치하고 프로젝트의 devDependencies 목록에 추가한다.
+-g	패키지를 프로젝트가 아닌 시스템의 node_modules 폴더에 설치한다.
+
+@babel/preset-react
+JSX로 작성된 코드들을 createElement 함수를 이용한 코드로 변환해 주는 바벨 플러그인이 내장되어 있다.
+리액트 애플리케이션을 만들 때 필요한 플러그인들의 집합
+preset
+바벨은 js 파일을 입력받아 변환하여 결과물 js파일을 출력한다.
+자바스크립트 파일을 변환해 주는 작업은 플러그인(plugin) 단위로 이루어진다.
+하나의 결과물을 위해 여러개의 플러그인을 활용하여 여러번의 변환과정을 거친다.
+이러한 플러그인들의 집합을 preset 이라 칭한다. (ex. 압축관련 플러그인 집합: babel-preset-minify)
+
+플러그인 :  
+
+플러그인의 본래 의미는 콘센트에 플러그를 꼽는다는 뜻이다. 하지만 인터넷이 발달하고 웹브라우저가 담당해야 할 부분이 증가하면서 메인프로그램인 웹브라우저가 처리하지 못하는 부분을 처리해 주는 작은 프로그램들을 플러그인이라고 부르기 시작하였다.
+
+
