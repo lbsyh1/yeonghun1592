@@ -66,4 +66,151 @@ preset
 
 플러그인의 본래 의미는 콘센트에 플러그를 꼽는다는 뜻이다. 하지만 인터넷이 발달하고 웹브라우저가 담당해야 할 부분이 증가하면서 메인프로그램인 웹브라우저가 처리하지 못하는 부분을 처리해 주는 작은 프로그램들을 플러그인이라고 부르기 시작하였다.
 
+## (3) 웹팩(Webpack) 설정
+$npm i -D webpack webpack-cli  webpack은 웹팩의 핵심 패키지이며 webpack-cli는 터미널에서 webpack 커맨드를 실행할 수 있게 해주는 커맨드라인 도구입니다. 두 개의 패키지 모두 개발할 때만 필요한 의존성이기 때문에 -D 옵션을 사용하였습니다.
+웹팩 데브 서버는 웹 애플리케이션을 개발하는 과정에서 유용하게 쓰이는 도구입니다. 웹팩의 빌드 대상 파일이 변경 되었을 때 매번 웹팩 명령어를 실행하지 않아도 코드만 변경하고 저장하면 웹팩으로 빌드한 후 브라우저를 새로고침 해줍니다.
+$npm i -D html-webpack-plugin HtmlWebpackPlugin은 webpack 번들을 제공하는 HTML 파일 생성을 단순화합니다. 이 플러그인은 매번 컴파일에 변경되는 해시로 된 파일 이름을 가진 webpack 번들에 특히 유용합니다. 플러그인이 HTML 파일을 생성하도록 하거나 lodash 템플릿을 사용하여 나만의 템플릿을 제공하거나 나만의 로더를 사용할 수 있습니다.
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+require() 함수는 어떻게 쓰는 것일까요?
+Node.JS 에서는 require 메서드를 통해 외부 모듈을 가져올 수 있습니다. require 메서드는 node가 local object에 추가한 메서드로서 다음과 같이 파라미터로 추가할 모듈의 파일 경로값을 받습니다.
 
+const foo = require('파일 경로');
+
+
+devtool: prod ? 'hidden-source-map' : 'eval',
+소스맵
+소스맵은 원본 소스와 난독화된 소스를 매핑해주는 방법 중 하나이다.
+*.map 파일을 통해 제공되고, json 형태로 돼있다.
+웹팩에서 devtool 옵션은 개발을 용이하게 하기 위해 소스맵을 제공하는 옵션이다.
+mode: prod ? 'production' : 'development',
+
+Webpack 모드
+mode 매개 변수는 다음 3가지 값 중 하나를 사용할 수 있습니다. 
+mode 값
+설명
+development
+개발 모드
+production
+배포 모드 (기본 값)
+
+webpack.config.js라는 파일과 자주 마주치게 됩니다. 바로 웹팩 설정 파일인데요
+
+
+Entry
+entry 속성은 웹팩에서 웹 자원을 변환하기 위해 필요한 최초 진입점이자 자바스크립트 파일 경로입니다.
+
+// webpack.config.js
+module.exports = {
+  entry: './src/index.js'
+}
+위 코드는 웹팩을 실행했을 때 src 폴더 밑의 index.js 을 대상으로 웹팩이 빌드를 수행하는 코드입니다.
+
+#Entry 파일에는 어떤 내용이 들어가야 하나?
+entry 속성에 지정된 파일에는 웹 애플리케이션의 전반적인 구조와 내용이 담겨져 있어야 합니다. 웹팩이 해당 파일을 가지고 웹 애플리케이션에서 사용되는 모듈들의 연관 관계를 이해하고 분석하기 때문에 애플리케이션을 동작시킬 수 있는 내용들이 담겨져 있어야 합니다.
+none
+기본 최적화 옵션 설정 해제
+
+
+
+resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
+
+여튼 Resolve 옵션은 module이 resolve 되는 방식을 변경시킨다. 예컨대 import 'lodash' 호출시, resolve 옵션은 웹팩이 lodash를 찾는 방법을 변경시킬 수 있다.
+
+resolve.extensions
+자동으로 특정 확장자만 resolve한다.
+module.exports = {
+  //...
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    extensions: ['.js', '.jsx']// , .scss ,.css]
+  }
+};
+
+module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'ts-loader'],
+      },
+    ],
+  },
+  
+  
+module
+module 프로퍼티는 프로젝트 내의 여러 유형의 모듈들을 처리할 방법을 결정
+module.rules : 모듈이 생성 될 때 요청과 일치하는 규칙 의 배열
+module.rules.test : loader를 적용시킬 파일들을 정규식으로 명시
+module.rules.loader : 사용할 loader 명시
+
+
+
+output
+ 
+
+번들링한 결과물을 어디 경로에 놓을 것인지를 결정합니다.
+
+파일이름과 path를 정해놓으면 그곳에 정의해둡니다.
+
+output: {
+  path: path.join(__dirname, "static"),
+  filename: "[name].js",
+},
+
+plugins: [
+	new webpack.ProvidePlugin({
+      React: 'react',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+ProvidePlugin
+모듈을 import 또는 require 할 필요 없이 자동으로 로드합니다.
+html-webpack-plugin
+웹팩에서 실행해서 나오는 결과물을 확인하기 위해서는 이전처럼([front-backend 분리] 로더 사용하기) 직접 html 파일을 수동으로 작성해야 한다. 위에서 chunkhash 옵션을 설정했기 때문에 파일의 내용이 변경될 때마다 html 파일의 내용도 수정해야한다. 이러한 작업을 자동으로 하는 플로그인이 'html-webpack-plugin' 이다.
+module.exports = {...
+  devServer: {
+    historyApiFallback: true,
+    inline: true,
+    port: 3000,
+    hot: true,
+    publicPath: '/',
+  },
+historyAPI란 브라우저의 세션 기록에 대한 property와 접근 method를 제공하는 객체이다. (여기를 참고)
+
+
+세션 기록이란 쉽게 생각해서 우리가 뒤로가기 앞으로가기 할 때 뒤로(앞으로)갈 페이지에 대한 정보를 저장해두는 것이다.
+historyApiFallback
+History API 또는 react-router 등을 사용하는 경우 새로고침 시 404 에러를 해결해주는 option
+
+Inline 모드 : 작은 웹팩개발서버 클라이언트엔트리가 번들에 추가가 되어서 바뀔때마다 페이지를 갱신합니다.
+
+Hot Module Replacement(또는 HMR)는 webpack에서 제공하는 가장 유용한 기능 중 하나입니다. 모든 종류의 모듈을 새로고침 할 필요 없이 런타임에 업데이트 할 수 있습니다.
+
+publicPath를 사용하여 webpack-dev-server가 “가상”파일을 제공 할 위치를 가리킬 수 있습니다. publicPath 옵션은 webpack-dev-server에 대한 content-build 옵션의 위치와 같습니다. webpack-dev-server 는 시작할 때 사용할 가상 파일을 만듭니다. 이 가상 파일은 웹팩에서 생성 한 실제 번들 파일과 유사합니다. 기본적으로 –content-base 옵션이 index.html이있는 디렉토리를 가리 키도록합니다. 
+plugins: [
+    ...,
+    new webpack.HotModuleReplacementPlugin(),
+    ...,
+  ],
+
+핫 모듈 리플레이스먼트(Hot Module Replacement - HMR)는 웹팩이 제공하는 가장 유용한 기능 중 하나입니다. 전체 새로고침 없이 모든 종류의 모듈들을 런타임 시점에 업데이트 되게 해줍니다
+
+
+: package.json 파일의 scripts 항목에 다양한 명령어를 설정해두고 콘솔에서 실행할 수 있다.
+
+npm run build. ○ 3. 해당 빌드를 실행하면 프로젝트에 전에 없던 build라는 폴더가 생성됩니다
+해당 빌드를 실행하면 프로젝트에 전에 없던 build라는 폴더가 생성됩니다. 이는 말 그대로 빌드된 파일들을 저장하는 폴더입니다. 
+npm run build 은의 별칭
+
+
+ReactDOM.render(element, container[, callback])
+react-dom package는 앱의 최상위 레벨에서 사용할 수 있는 DOM에 특화된 메서드와 필요한 경우 React 모델 외부로 나갈 수 있는 해결책을 제공합니다. 대다수 컴포넌트는 이 모듈을 사용할 필요가 없습니다.
+
+React 엘리먼트를 container DOM에 렌더링하고 컴포넌트에 대한 참조를 반환합니다(무상태 컴포넌트는 null을 반환합니다).
+
+React 엘리먼트가 이전에 container 내부에 렌더링 되었다면 해당 엘리먼트는 업데이트하고 최신의 React 엘리먼트를 반영하는 데 필요한 DOM만 변경합니다.
+
+추가적인 콜백이 제공된다면 컴포넌트가 렌더링되거나 업데이트된 후 실행됩니다.
