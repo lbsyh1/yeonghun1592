@@ -13,6 +13,29 @@ $node_modules/.bin/tsc --init :
 2.node_modules/.bin : 이 폴더는 이름에서도 유추할수있다시피 바이너리 파일들이 저장되는 곳이다. (바이너리 파일이란 1과 0으로만 이루어진 파일이다.
 
 3.tsc --init : tsconfig.json 파일을 생성한다
+tsconfig.json
+
+
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["dom", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020"],
+    "allowJs": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}
 
 sourceMap": true : Soucemap을 설정하면, 코드상의 위치를 기억하고 알려주기 때문에 빌드 전 어떤 파일, 라인에서 오류가 났는지 확인할 수 있다.
 "target": "es5" : tsconfig.json 에 등장하는 중간에 lib의 내용을 보면 배열형태로 사용할 라이브러리들을 정의하고 있습니다. 만약 lib 항목을 정의하지 않았다면 target 항목에서 지정한 ECMAScript의 버전에 따라 기본값이 정의됩니다.
@@ -62,6 +85,9 @@ default export를 쓰지 않은 모듈도 default import가 가능하게 할건�
 
 npm i -D babel-loader : babel-loader: 웹팩과 바벨을 연동시키도록 해준다.
 
+module.exports = {
+  presets: ['@babel/preset-react', '@babel/preset-env', '@babel/preset-typescript'],
+};
 아래의 것들은 플러그인이지만 babel-loader과 같이 쓰이기 때문에 간략하게 소개하면 아래와 같다.
 
 @babel/cli : 터미널에서 바벨 명령어를 사용할 수 있게 도와준다.
@@ -112,7 +138,46 @@ $npm i -D webpack webpack-cli  webpack은 웹팩의 핵심 패키지이며 webpa
 $npm i -D html-webpack-plugin HtmlWebpackPlugin은 webpack 번들을 제공하는 HTML 파일 생성을 단순화합니다.
 이 플러그인은 매번 컴파일에 변경되는 해시로 된 파일 이름을 가진 webpack 번들에 특히 유용합니다. 
 플러그인이 HTML 파일을 생성하도록 하거나 lodash 템플릿을 사용하여 나만의 템플릿을 제공하거나 나만의 로더를 사용할 수 있습니다
-.
+.webpack.config.js
+
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const prod = process.env.NODE_ENV === 'production';
+
+module.exports = {
+  mode: prod ? 'production' : 'development',
+  devtool: prod ? 'hidden-source-map' : 'eval',
+  entry: './src/index.tsx',
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
+  
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'ts-loader'],
+      },
+    ],
+  },
+  
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
+  },
+
+  plugins: [
+	new webpack.ProvidePlugin({
+      React: 'react',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+};
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 require() 함수는 어떻게 쓰는 것일까요?
