@@ -34,17 +34,22 @@ JS의 대표적인 린터의 종류
 별개로 Typescript만을 위한 lint인 TSLint도 있으나, 현재는 ESLint와 통합으로 Deprecated 되었습니다.
 
 Prettier, ESLint 설정하기
-ESLint 설치
+* ESLint 설치
 $ npm install eslint --save-dev
-Prettier 설치
+
+* Prettier 설치
 $ npm install prettier --save-dev --save-exact
-Prettier, ESLint 관련 설정 모듈들 설치
+
+* Prettier, ESLint 관련 설정 모듈들 설치
 $ npm install eslint-plugin-prettier eslint-config-prettier --save-dev
+
+* ESLint와 Prettier이 충돌할 수 있는 설정들을 비활성화 시켜줍니다.
 eslint-plugin-prettier
-ESLint와 Prettier이 충돌할 수 있는 설정들을 비활성화 시켜줍니다.
+
+* ESLint의 포맷 기능이 아닌 Prettier의 포맷 기능을 사용하게 만들어 줍니다.
 eslint-config-prettier
-ESLint의 포맷 기능이 아닌 Prettier의 포맷 기능을 사용하게 만들어 줍니다.
-Extension 설치하기 (Only used VSCode)
+
+* Extension 설치하기 (Only used VSCode)
 VSCode extension에서 Prettier ESLint를 설치해줍니다.
 
 * ESLint 설정 파일 작성하기
