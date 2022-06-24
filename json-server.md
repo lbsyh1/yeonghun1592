@@ -73,6 +73,7 @@ http://localhost:4000/posts/1
 <pre>
 <code>
 $ yarn add axios
+$ 
 </code>
 </pre>
 그리고, api/posts.js 파일을 실제 API 요청을 하도록 수정해주겠습니다.
