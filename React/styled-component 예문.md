@@ -1,4 +1,5 @@
-
+<pre>
+<code>
 import React from 'react';
 import styled, { css } from 'styled-components';
 
@@ -51,4 +52,5 @@ const StyledComponent = () => (
 );
 
 export default StyledComponent;
-
+</code>
+</pre>
