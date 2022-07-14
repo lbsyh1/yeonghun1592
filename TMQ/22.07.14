@@ -40,3 +40,36 @@
 
 
 미해결8.컴포넌트마다 배경색 적용 방법
+미해결9.link와 routes를 같은 컴포넌트에서 사용하면 에러가 발생하는지
+<pre>
+<code>
+
+<div className="App">
+      <DehazeIcon />
+
+      <BrowserRouter>
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="search" element={<Search />} />
+          <Route path="my-calories" element={<MyCalorieList />} />
+          <Route path="my-calories/add" element={<AddFoodCalorie />} />
+          <Route path="my-calories/edit" element={<EditFoodCalorie />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+    
+    
+    SideBar.js
+    <div>
+      <div class="w3-sidebar w3-bar-block" style="width:25%">
+        <Link to="/">GoToHomePage</Link>
+        <Link to="/my-calories/add">GoToAddPage</Link>
+        <Link to="/my-calories/edit">GoToEditPage</Link>
+        <Link to="/search">GoToSearchPage</Link>
+        <Link to="/my-calories">GoToCalorieListPage</Link>
+      </div>
+    </div>
+    
+    </code>
+    </pre>
