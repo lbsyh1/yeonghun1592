@@ -13,6 +13,10 @@
     </code>
     </pre>
  2.여기서 justifyContent가 적용안되는 이유
+ ---->text-align해도 마찬가지다
+ 2.1 justifycontent와 text-align차이
+ 
+ 
  
  3.여기서 input창이 화면크기와 상관없이 똑같은게 아니라 화면크기에 따라 줄어들거나 늘어나게 하려면
  4.위의 css를 styled-component로 고친다면
@@ -24,6 +28,10 @@
         />
       </div>
 여기서 아이콘을 input창 안으로 넣으려면
+
+---->position: "relative", left: "40px"
+
+
 
 6.npm install하다가 정지하면 어떻게
 7.icon을 모든 페이지에 넣으려면 app.js에 입력하면 공통으로 적용되는지
