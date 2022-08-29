@@ -5,8 +5,11 @@ class App extends React.Component
     count:0
   };
   add=()=>{
-    console.log(123) 
+    this.setState({count:this.state.count+1}); 
   }
+  minus=()=>{
+    this.setState({count:current.count-1});
+  };
 //react는 자동적으로 class component의 render method를 실행한다
   render(){
     return (
