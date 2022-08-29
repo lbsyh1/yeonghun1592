@@ -1,0 +1,22 @@
+```
+
+class App extends React.Component
+  state={
+    count:0
+  };
+  add=()=>{
+    console.log(123) 
+  }
+//react는 자동적으로 class component의 render method를 실행한다
+  render(){
+    return (
+    //function app(){
+    //return()에서의 그 return이다
+    <div>
+      <h1>123 {this.state.count}</h1>
+      <button onClick={this.add}>add</button>
+    </div>
+  }
+}
+
+```
