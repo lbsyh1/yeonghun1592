@@ -3,6 +3,9 @@
 1.this
 2.prototype
 3.fetch
+4.Object객체
+5.defineProperty()함수
+6.new
 
 물건같이 동일한 종류의 객체를 여러 개 생성해야 하는 경우가 잦습니다.
 
