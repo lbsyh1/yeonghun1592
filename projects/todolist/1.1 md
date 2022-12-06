@@ -10,7 +10,7 @@ function App() {
     if (toDo === "") {//1.todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환한다
       return;
     }
-    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDos((currentArray) => [toDo, ...currentArray]);//함수의 함수값(실행결과)을 저장한다
     setToDo("");
   };
   
