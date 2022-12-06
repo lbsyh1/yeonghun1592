@@ -1,0 +1,50 @@
+```
+
+import { useState } from "react";
+function App() {
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (toDo === "") {//1.todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환한다
+      return;
+    }
+    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDo("");
+  };
+  
+   return (
+    <div>
+      <h1>My To Dos ({toDos.length})</h1>//h1 태그에 todo목록에 추가한 갯수
+      <form onSubmit={onSubmit}>//2.form 제출되면 onSubmit함수가 실행되게 라고 하지말고 todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환하는 
+      함수가 실행되게
+        <input
+          onChange={onChange}//input창에 변화가 생기면 3.onChange함수가 실행되게 라고하지말고 toDo에 이벤트가 일어나는 곳의 값이 저장되는 함수가 실행되게 라고
+          value={toDo}//input창 값에 toDo가 표시되게
+          type="text"
+          placeholder="Write your to do..."
+        />
+        <button>Add To Do</button>
+      </form>
+      <hr />
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>//4.todos의 모든 요소를 요소가 들어있는 리스트로 만드는 코드
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+```
+
+문제1..todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환한다
+문제2.form 제출되면 onSubmit함수가 실행되게 라고 하지말고 todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환하는 
+      함수가 실행되게
+문제3.onChange함수가 실행되게 라고하지말고 toDo에 이벤트가 일어나는 곳의 값이 저장되는 함수가 실행되게 라고
+          value={toDo}//input창 값에 toDo가 표시되게
+문제4.todos의 모든 요소를 요소가 들어있는 리스트로 만드는 코드
+문제5.todoList
+1.todo입력한것을 저장한다
+2.저장한 todo들을 ui로 보여준다
