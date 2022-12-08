@@ -48,3 +48,8 @@ function App() {
 문제5.todoList
 1.todo입력한것을 저장한다
 2.저장한 todo들을 ui로 보여준다
+
+event가 발생하면 event객체가 생성된다
+target은 event객체의 프로퍼티다
+
+
