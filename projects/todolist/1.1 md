@@ -13,6 +13,8 @@ function App() {
     setToDos((currentArray) => [toDo, ...currentArray]);//함수의 함수값(실행결과)을 저장한다
     setToDo("");
   };
+//input에 입력할때마다 toDo가 바뀌는데 저장은 submit눌러야
+toDos에 추가된다
   
    return (
     <div>
