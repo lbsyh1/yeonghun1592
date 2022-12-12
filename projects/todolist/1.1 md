@@ -6,7 +6,7 @@ function App() {
   const [toDos, setToDos] = useState([]);
   const onChange = (event) => setToDo(event.target.value);
   const onSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();//이거 안넣으면 submit되면서 리렌더링 되어 state가 초기화된다 새로고침이 되면 form이 서버로 전달하려는 value가 초기화된다 undefined가 서버로전달
     if (toDo === "") {//1.todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환한다
       return;
     }
@@ -48,7 +48,7 @@ toDos에 추가된다
           value={toDo}//input창 값에 toDo가 표시되게
 문제4.todos의 모든 요소를 요소가 들어있는 리스트로 만드는 코드
 문제5.todoList
-1.todo입력한것을 저장한다
+1.ㅑinput에 입력한것들을 저장한다
 2.저장한 todo들을 ui로 보여준다
 
 event가 발생하면 event객체가 생성된다
