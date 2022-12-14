@@ -11,6 +11,9 @@ function App() {
       return;
     }
     setToDos((currentArray) => [toDo, ...currentArray]);//함수의 함수값(실행결과)을 저장한다
+    //오답노트:Settodos(todo)라고 하면 기존에 저장되어 있던게 날아간다
+함수넣어서 함수값저장되게
+settodos((elements)= >(todo,. . .elements))로 해야
     setToDo("");
   };
 //input에 입력할때마다 toDo가 바뀌는데 저장은 submit눌러야
