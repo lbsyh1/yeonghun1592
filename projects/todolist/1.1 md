@@ -24,7 +24,7 @@ toDos에 추가된다
         <input
           onChange={onChange}//input창에 변화가 생기면 3.onChange함수가 실행되게 라고하지말고 toDo에 이벤트가 일어나는 곳의 값이 저장되는 함수가 실행되게 라고
           value={toDo}//input창 값에 toDo가 표시되게 //onChange->todo->value value는 현재의 todo값을 저장한다
-          type="text"
+          type="text"//이건todo에 value입력하는게 아니다 할당문 오른쪽에 있는걸 왼쪽에 저장한다
           placeholder="Write your to do..."
         />
         <button>Add To Do</button>
