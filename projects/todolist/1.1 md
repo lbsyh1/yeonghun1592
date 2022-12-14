@@ -4,8 +4,8 @@ import { useState } from "react";
 function App() {
   const [toDo, setToDo] = useState("");
   const [toDos, setToDos] = useState([]);
-  const onChange = (event) => setToDo(event.target.value);
-  const onSubmit = (event) => {
+  const onChange = (event) => setToDo(event.target.value);//input창에 값이 변할때마다 todo에 값을 저장한다
+  const onSubmit = (event) => {//submit 버튼 누르면 todo가 빈칸이면 아무것도 안하고 종료하고 아니면 toDos집합에 todo를 추가한다
     event.preventDefault();//이거 안넣으면 submit되면서 리렌더링 되어 state가 초기화된다 새로고침이 되면 form이 서버로 전달하려는 value가 초기화된다 undefined가 서버로전달
     if (toDo === "") {//1.todo가 공백이면 함수종료, 공백이 아니면 currentArray에 추가 그 후 todo를 공백으로 전환한다
       return;
@@ -23,7 +23,7 @@ toDos에 추가된다
       함수가 실행되게
         <input
           onChange={onChange}//input창에 변화가 생기면 3.onChange함수가 실행되게 라고하지말고 toDo에 이벤트가 일어나는 곳의 값이 저장되는 함수가 실행되게 라고
-          value={toDo}//input창 값에 toDo가 표시되게
+          value={toDo}//input창 값에 toDo가 표시되게 //onChange->todo->value value는 현재의 todo값을 저장한다
           type="text"
           placeholder="Write your to do..."
         />
@@ -33,6 +33,8 @@ toDos에 추가된다
       <ul>
         {toDos.map((item, index) => (
           <li key={index}>{item}</li>//4.todos의 모든 요소를 요소가 들어있는 리스트로 만드는 코드
+          todos.map(element,index)=>{
+          <li key={index}>{element{
         ))}
       </ul>
     </div>
