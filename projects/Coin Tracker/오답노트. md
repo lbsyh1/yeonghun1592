@@ -1,1 +1,2 @@
-
+1.useEffect 기본 form
+useEffect(()=>{   },[]);
