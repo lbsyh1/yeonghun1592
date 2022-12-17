@@ -1,2 +1,4 @@
 1.useEffect 기본 form
 useEffect(()=>{   },[]);
+
+2.coins.map으로 화면에 렌더링하려면 {coin.name}이라고 하기보단 <ul><li>같은 html태그를 붙여야한다
