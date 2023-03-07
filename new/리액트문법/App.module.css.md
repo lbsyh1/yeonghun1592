@@ -1,4 +1,4 @@
-import styles from "./App.css";
+### 1. import styles from "./App.css";
 문법이 틀렸어? 리액트 초기화면
 
 "import styles from './App.css';"는 리액트에서 CSS 파일을 가져오는 일반적인 방법 중 하나입니다.
@@ -25,7 +25,7 @@ CSS 파일을 일반적인 방식으로 가져오는 경우: "import './App.css'
 
 
 1024201a@naver.com
-app.module.css에서 module을 빼면 에러가 나?
+### 2. app.module.css에서 module을 빼면 에러가 나?
 
 네, 맞습니다. "App.module.css"에서 ".module"을 뺀 "App.css"로 변경하면 CSS 모듈이 동작하지 않기 때문에 오류가 발생합니다.
 
@@ -43,4 +43,4 @@ CSS 모듈은 클래스 이름을 자동으로 고유하게 만들어서 스타�
 
 
 
-결론: styles from './App.css'로 하면 작동하지 
+### 3. 결론: styles from './App.css'로 하면 작동하지 
