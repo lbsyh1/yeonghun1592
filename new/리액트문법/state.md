@@ -22,7 +22,7 @@ return(
 
 let [name,setName]=useState('mike');
 function nameChange(){
-setName(name==='mike'?'jordan':'minsu');
+setName(name==='mike'?'jordan':'minsu'); //여기서 콜백함수를 사용하는것이 더 좋다
 }
 return(
 <div>
