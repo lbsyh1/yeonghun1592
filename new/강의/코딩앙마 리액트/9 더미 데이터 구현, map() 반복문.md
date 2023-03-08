@@ -1,3 +1,5 @@
+```
+
 const wordList= dummy.word.filter(word=>word.day===1);
 
 {wordList.map(word=>
@@ -14,3 +16,5 @@ const wordList= dummy.word.filter(word=>word.day===1);
       </tr>
     </tbody>
   </table>
+
+```
