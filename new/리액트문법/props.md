@@ -2,9 +2,9 @@ props는 컴포넌트 사용처에서 컴포넌트 정의한곳으로 값을 보
 
 ```
 
-<Hello age={10}/>
+<Hello age={10}/> //컴포넌트 사용처
 
-export default function Hello(props){
+export default function Hello(props){ //컴포넌트 정의한 곳
 return(
 console.log(props)
 <h2>{props.age}</h2>
