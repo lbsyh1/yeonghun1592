@@ -31,6 +31,12 @@ return(
 
 ```
 
+```
+
+setState(prevState => prevState === 'mike' ? 'jordan' : 'minsu');
+
+```
+
 state로 해야 변경된 dom에 따라 ui업데이트를 한다
 
 useState를 사용할 때 변수의 선언 방식에 대해서는 일반적으로 const를 사용하는 것이 권장됩니다.
