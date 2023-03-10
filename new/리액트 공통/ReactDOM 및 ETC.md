@@ -18,8 +18,13 @@ createRoot의 사용
 -createRoot(container[, options]);
 -주어진 container에 대해 React 루트를 만들고 해당 루트를 반환합니다.
 -반환된 루트로 render를 통해 React 엘리먼트를 DOM으로 렌더링할 수 있습니다.
+
+```
+
 -const root = createRoot(container);
  root.render(element);
+ 
+ ```
 
 container를 root로 만들고 반환한다 그럼 root에 그 container가 저장된다
 그 container(root)에 엘레먼트를 넣고 render할 수 있다
@@ -30,7 +35,10 @@ container를 root로 만들고 반환한다 그럼 root에 그 container가 저�
 
 문제2
 다음코드를 설명하시오
+
+```
 const root = createRoot(container);
  root.render(element);
  
+ ```
  
